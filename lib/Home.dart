@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutterblog/main.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -16,7 +15,7 @@ class _HomeState extends State<Home> {
         title: const Text('Personal Blogs'),
       ),
       floatingActionButton: Container(
-        padding: EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

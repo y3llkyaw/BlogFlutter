@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterblog/Home.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +22,7 @@ void main() async {
 
 class _MyAppState extends State<MyApp> {
   String? title, des;
+  File? selectedImage;
 
   getTitle(title) {
     this.title = title;
@@ -25,6 +30,20 @@ class _MyAppState extends State<MyApp> {
 
   getDescription(des) {
     this.des = des;
+  }
+
+  Future<void> getImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        selectedImage = image?.path != null ? File(image!.path) : null;
+      });
+    } else {
+      // Handle the case where no image was picked (e.g., user cancelled)
+      print('No image selected.');
+    }
   }
 
   createData() {
@@ -44,7 +63,7 @@ class _MyAppState extends State<MyApp> {
 
   getAllData() async {
     QuerySnapshot querySnapshot =
-    await FirebaseFirestore.instance.collection('Blogs').get();
+        await FirebaseFirestore.instance.collection('Blogs').get();
 
     List<Map<String, dynamic>> allData = [];
 
@@ -52,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       // Convert each document to a Map and add it to the list
       allData.add(doc.data() as Map<String, dynamic>);
     });
-    print(allData);
+
     return allData;
   }
 
@@ -64,17 +83,35 @@ class _MyAppState extends State<MyApp> {
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.all(20),
-            height: 200,
-            decoration:  BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10)
-            ),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: const Icon(Icons.add_a_photo),
-            ),
+          GestureDetector(
+            onTap: () {
+              getImage();
+            },
+            child: selectedImage != null
+                ? Container(
+                    // margin: const EdgeInsets.all(20),
+                    height: 200,
+                    child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.file(
+                            selectedImage!,
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                  )
+                : Container(
+                    margin: const EdgeInsets.all(20),
+                    height: 200,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: const Icon(Icons.add_a_photo),
+                    ),
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(30),
@@ -120,7 +157,8 @@ class _MyAppState extends State<MyApp> {
                   print(allData);
                 },
                 style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blueAccent)),
+                    backgroundColor:
+                        MaterialStatePropertyAll(Colors.blueAccent)),
                 child: const Text(
                   'Read',
                   style: TextStyle(color: Colors.black),
