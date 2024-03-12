@@ -1,6 +1,5 @@
-# Blog Application with Flutter
+## Blog Application with Flutter using Firebase Database
 
-A new Flutter project.
+This project is one of training for flutter development.
 
-This project is a training for a Flutter application Developement.
 
