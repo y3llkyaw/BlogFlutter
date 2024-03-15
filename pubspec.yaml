@@ -38,6 +38,8 @@ dependencies:
   firebase_core: ^2.27.0
   cloud_firestore:
   image_picker:
+  firebase_storage:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:
