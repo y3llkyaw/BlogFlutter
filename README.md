@@ -1,5 +1,16 @@
-## Blog Application with Flutter using Firebase Database
 
-This project is one of training for flutter development.
+# Blog Application with Flutter Framework using Firebase
 
 
+This project is one of my training for flutter development.
+
+
+
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+
+## 🚀 About Me
+I'm finding a junior software developer Job.
+And I keep building project for my portfolio.
