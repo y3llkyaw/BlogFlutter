@@ -6,8 +6,23 @@ This project is one of my training for flutter development.
 
 
 
-## Screenshots
+## Deployment
 
+To Run this project
+
+```bash
+  flutter doctor
+```
+```bash
+ flutter run lib/main.dart
+```
+
+```bash
+  flutter pub get
+```
+
+
+## Screenshots
 
 ![App Screenshot](https://github.com/y3llkyaw/BlogFlutter/blob/main/readme_images/screenshot1.png)
 
