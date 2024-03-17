@@ -14,11 +14,10 @@ To Run this project
   flutter doctor
 ```
 ```bash
- flutter run lib/main.dart
-```
-
-```bash
   flutter pub get
+```
+```bash
+ flutter run lib/main.dart
 ```
 
 
