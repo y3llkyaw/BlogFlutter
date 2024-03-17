@@ -8,7 +8,8 @@ This project is one of my training for flutter development.
 
 ## Screenshots
 
-![App Screenshot]([https://via.placeholder.com/468x300?text=App+Screenshot+Here](https://github.com/y3llkyaw/BlogFlutter/blob/main/readme_images/screenshot1.png))
+
+![App Screenshot](https://github.com/y3llkyaw/BlogFlutter/blob/main/readme_images/screenshot1.png)
 
 
 ## 🚀 About Me
